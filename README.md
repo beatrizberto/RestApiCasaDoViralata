@@ -28,9 +28,17 @@ O abrigo sobrevive por meio de planos de assinatura mensal por plataformas do ti
 
 Para atender as possíveis necessidades da Casa, serão criadas as seguintes estruturas de dados:
 
-- User, protegido por login e senha, que será o usuário responsável por inserir os dados. A princípio, um perfil de usuário é o suficiente, mas a API será criada de modo a permitir a inclusão de outros perfis conforme o projeto se expanda
-- Caes e Gatos em classes separadas, devido à especificidade de cada um.
-  - Caes: id, raça, cor, sexo, idade, porte, se dá bem com outros animais, adoção especial (S/N), data de admissão na casa
-  - Gatos: id, cor, sexo, idade, vacinado, castrado, FIV positivo, FELV positivo, adoção especial (S/N), data de admissão na casa
-- Adotantes, cadastro de pessoas que já adotaram ou têm interesse em adotar um ou mais animais da casa. Terá como atributos id, dados de contato, animal adotado, se já tem ou não animal etc
+### User
+- Usuário responsável por inserir os dados. A princípio, um nível de acesso é o suficiente, mas a API será criada de modo a permitir a inclusão de outros perfis conforme o projeto se expanda.
+- Atributos: id, userName e password
+- Permite buscar por id e username
+
+### Canine
+- Atributos: id, color, sex, age, size, admissionDate, specialNeeds, adoptionStatus;
+
+### Feline 
+- Atributos: id, color, sex, age, FIV, FELV, admissionDate, specialNeeds, adoptionStatus;
+
+### Candidates
+- Atributos: id, name, email, phoneNumber, approved, animalOfInterest;
 
