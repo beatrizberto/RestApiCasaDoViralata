@@ -1,6 +1,6 @@
 # Projeto API Rest - Casa Do Viralata
 
-Projeto de API para o Módulo Programação Web II da Trilha Java da Ada Tech em parceria com o BTG Pactual &lt;womandev> #btgfaztech
+Projeto de API para o Módulo Programação Web II da Trilha Java da Ada Tech em parceria com o BTG Pactual &lt;womandev> #btgfaztech, utilizando Java e Spring.
 
 ## Descrição do Projeto
 
