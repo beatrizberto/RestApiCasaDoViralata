@@ -9,28 +9,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/user")
+    @GetMapping
     public List<UserResponse> getUsers() {
         return userService.getUsers();
     }
 
 
-    @PostMapping("/user")
+    @PostMapping
     public UserResponse saveUser(@RequestBody UserRequest userDTO) {
         return userService.saveUSer(userDTO);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public UserResponse getUser(@PathVariable Integer id){
         return userService.getUserById(id);
     }
 
-    @GetMapping("/user/username/{userName}")
+    @GetMapping("/username/{userName}")
     public UserResponse getUserByUserName(@PathVariable String userName){
         return userService.getUserByUserName(userName);
     }

@@ -22,7 +22,7 @@ Abrigo para animais localizado na Zona Sul de São Paulo-SP que resgata cães e 
 
 Os adotantes passam por entrevistas e são cuidadosamente selecionados, com o objetivo de minimizar devoluções e/ou maus tratos.
 
-O abrigo sobrevive por meio de planos de assinatura mensal por plataformas do tipo [Apoia.se](http://apoia.se/), além de doações avulsas e campanhas, no caso de algum animal em estados especialmente grave precise de atendimento especial.
+O abrigo sobrevive por meio de planos de assinatura mensal por plataformas do tipo [Apoia.se](http://apoia.se/), além de doações avulsas e campanhas, no caso de algum dog em estados especialmente grave precise de atendimento especial.
 
 ## Estrutura da aplicação
 
