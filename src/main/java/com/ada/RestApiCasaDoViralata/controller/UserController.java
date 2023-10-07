@@ -28,19 +28,38 @@ public class UserController {
     public ResponseEntity<UserResponse> saveUser(@RequestBody UserRequest userDTO) {
 
         UserResponse user = userService.saveUSer(userDTO);
-        return ResponseEntity.created(URI.create("/user/"+user.getId())).body(user);
+        return ResponseEntity.created(URI.create("/user/" + user.getId())).body(user);
 
     }
 
     @GetMapping("/{id}")
-    public UserResponse getUser(@PathVariable Integer id){
+    public ResponseEntity<UserResponse> getUser(@PathVariable Integer id) {
 
-        return userService.getUserById(id);
+
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @GetMapping("/username/{userName}")
-    public UserResponse getUserByUserName(@PathVariable String userName){
-        return userService.getUserByUserName(userName);
+    public ResponseEntity<UserResponse> getUserByUserName(@PathVariable String userName) {
+
+        return ResponseEntity.ok(userService.getUserByUserName(userName));
+    }
+
+    //update
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponse> updateUser(
+            @PathVariable Integer id,
+            @RequestBody UserRequest userRequest
+    ){
+
+        return ResponseEntity.ok(userService.updateUser(id, userRequest));
+
+    }
+
+    @DeleteMapping("{/id}")
+    public void deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
+
     }
 
 }

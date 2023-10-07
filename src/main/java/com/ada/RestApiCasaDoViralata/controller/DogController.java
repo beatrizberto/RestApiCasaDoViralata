@@ -3,14 +3,12 @@ package com.ada.RestApiCasaDoViralata.controller;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogRequest;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogResponse;
 import com.ada.RestApiCasaDoViralata.service.DogService;
-import com.ada.RestApiCasaDoViralata.utils.AnimalGender;
-import com.ada.RestApiCasaDoViralata.utils.DogSize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/dog")
@@ -20,7 +18,7 @@ public class DogController {
     DogService dogService;
 
     @GetMapping
-    public ResponseEntity<Page<DogResponse>> getDogs(
+    public ResponseEntity<Page<DogResponse>> getAllDogs(
             @RequestParam(
                     value = "page",
                     required = false,
@@ -37,10 +35,16 @@ public class DogController {
     }
 
     @PostMapping
-    public DogResponse saveDog (@RequestBody DogRequest dogRequest){
-        return dogService.saveDog(dogRequest);
+    public ResponseEntity<DogResponse> saveDog (@RequestBody DogRequest dogRequest){
+        DogResponse dog = dogService.saveDog(dogRequest);
+        return ResponseEntity.created(URI.create("/dog/" + dog.getId())).body(dog);
 
     }
+
+    @DeleteMapping
+    public void deleteDog(
+            @PathVariable Integer id
+    ){}
 
 //
 //    @GetMapping

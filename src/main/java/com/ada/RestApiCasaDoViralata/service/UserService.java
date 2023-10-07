@@ -35,4 +35,15 @@ public class UserService {
     public UserResponse getUserByUserName(String userName) {
         return UserConvert.toResponse((userRepository.findByUserName(userName)));
     }
+
+    public UserResponse updateUser (Integer id, UserRequest userRequest){
+        User user = UserConvert.toEntity(userRequest);
+        user.setId(id);
+        return UserConvert.toResponse(userRepository.save(user));
+
+    }
+
+    public void deleteUser(Integer id){
+       userRepository.deleteById(id);
+    }
 }
