@@ -3,10 +3,12 @@ package com.ada.RestApiCasaDoViralata.service;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogRequest;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogResponse;
 import com.ada.RestApiCasaDoViralata.model.Dog;
+import com.ada.RestApiCasaDoViralata.model.User;
 import com.ada.RestApiCasaDoViralata.repository.DogRepository;
 import com.ada.RestApiCasaDoViralata.utils.AnimalGender;
 import com.ada.RestApiCasaDoViralata.utils.DogConvert;
 import com.ada.RestApiCasaDoViralata.utils.DogSize;
+import com.ada.RestApiCasaDoViralata.utils.UserConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,4 +54,15 @@ public class DogService {
         return DogConvert.toResponse(dogRepository.findBySize(size).get());
     }
 
+
+    public DogResponse updateDog(Integer id, DogRequest dogRequest) {
+        Dog dog = DogConvert.toEntity(dogRequest);
+        dog.setId(id);
+        return DogConvert.toResponse(dogRepository.save(dog));
+    }
+
+    public void deleteDog (Integer id){
+        dogRepository.deleteById(id);
+
+    }
 }

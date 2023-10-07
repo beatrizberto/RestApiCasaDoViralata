@@ -2,6 +2,8 @@ package com.ada.RestApiCasaDoViralata.controller;
 
 import com.ada.RestApiCasaDoViralata.controller.dto.DogRequest;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogResponse;
+import com.ada.RestApiCasaDoViralata.controller.dto.UserRequest;
+import com.ada.RestApiCasaDoViralata.controller.dto.UserResponse;
 import com.ada.RestApiCasaDoViralata.service.DogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,21 +32,32 @@ public class DogController {
                     defaultValue = "5"
 
             ) int size
-    ){
+    ) {
         return ResponseEntity.ok(dogService.getDogs(page, size));
     }
 
     @PostMapping
-    public ResponseEntity<DogResponse> saveDog (@RequestBody DogRequest dogRequest){
+    public ResponseEntity<DogResponse> saveDog(@RequestBody DogRequest dogRequest) {
         DogResponse dog = dogService.saveDog(dogRequest);
         return ResponseEntity.created(URI.create("/dog/" + dog.getId())).body(dog);
 
     }
 
-    @DeleteMapping
-    public void deleteDog(
-            @PathVariable Integer id
-    ){}
+    @PutMapping("/{id}")
+    public ResponseEntity<DogResponse> updateDog(
+            @PathVariable Integer id,
+            @RequestBody DogRequest dogRequest
+    ){
+
+        return ResponseEntity.ok(dogService.updateDog(id, dogRequest));
+
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteDog(@PathVariable Integer id) {
+        dogService.deleteDog(id);
+    }
 
 //
 //    @GetMapping
@@ -58,13 +71,6 @@ public class DogController {
 //            ){
 //        return dogService.getDogs();
 //    }
-
-
-
-
-
-
-
 
 
 }
