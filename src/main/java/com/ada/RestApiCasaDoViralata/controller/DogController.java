@@ -1,11 +1,66 @@
 package com.ada.RestApiCasaDoViralata.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ada.RestApiCasaDoViralata.controller.dto.DogRequest;
+import com.ada.RestApiCasaDoViralata.controller.dto.DogResponse;
+import com.ada.RestApiCasaDoViralata.service.DogService;
+import com.ada.RestApiCasaDoViralata.utils.AnimalGender;
+import com.ada.RestApiCasaDoViralata.utils.DogSize;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/dog")
-
 public class DogController {
+
+    @Autowired
+    DogService dogService;
+
+    @GetMapping
+    public ResponseEntity<Page<DogResponse>> getDogs(
+            @RequestParam(
+                    value = "page",
+                    required = false,
+                    defaultValue = "0"
+            ) int page,
+            @RequestParam(
+                    value = "size",
+                    required = false,
+                    defaultValue = "5"
+
+            ) int size
+    ){
+        return ResponseEntity.ok(dogService.getDogs(page, size));
+    }
+
+    @PostMapping
+    public DogResponse saveDog (@RequestBody DogRequest dogRequest){
+        return dogService.saveDog(dogRequest);
+
+    }
+
+//
+//    @GetMapping
+//    public List<DogResponse> getDog(
+//            @RequestParam(name = "dogId", required = false) Integer id,
+//            @RequestParam (name = "dogName", required = false) String name,
+//            @RequestParam (name = "dogColor", required = false) String color,
+//            @RequestParam (name = "dogGender", required = false) AnimalGender gender,
+//            @RequestParam (name = "dogSize", required = false) DogSize size
+//
+//            ){
+//        return dogService.getDogs();
+//    }
+
+
+
+
+
+
+
+
 
 }

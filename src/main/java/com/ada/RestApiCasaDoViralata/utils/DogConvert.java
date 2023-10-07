@@ -3,6 +3,8 @@ package com.ada.RestApiCasaDoViralata.utils;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogRequest;
 import com.ada.RestApiCasaDoViralata.controller.dto.DogResponse;
 import com.ada.RestApiCasaDoViralata.model.Dog;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class DogConvert {
         return dogResponse;
     }
 
-    public static List<DogResponse> toResponseList(List<Dog> dogs) {
+    public static Page<DogResponse> toResponseList(Page<Dog> dogs) {
         List<DogResponse> dogResponses = new ArrayList<>();
         for (Dog dog : dogs) {
             DogResponse dogResponse = DogConvert.toResponse(dog);
@@ -43,7 +45,7 @@ public class DogConvert {
 
         //TODO: tentar fazer esse processo com stream
 
-        return dogResponses;
+        return new PageImpl<>(dogResponses);
 
     }
 }

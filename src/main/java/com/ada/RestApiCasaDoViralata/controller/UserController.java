@@ -4,8 +4,10 @@ import com.ada.RestApiCasaDoViralata.controller.dto.UserRequest;
 import com.ada.RestApiCasaDoViralata.controller.dto.UserResponse;
 import com.ada.RestApiCasaDoViralata.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,17 +19,22 @@ public class UserController {
 
     @GetMapping
     public List<UserResponse> getUsers() {
+
         return userService.getUsers();
     }
 
 
     @PostMapping
-    public UserResponse saveUser(@RequestBody UserRequest userDTO) {
-        return userService.saveUSer(userDTO);
+    public ResponseEntity<UserResponse> saveUser(@RequestBody UserRequest userDTO) {
+
+        UserResponse user = userService.saveUSer(userDTO);
+        return ResponseEntity.created(URI.create("/user/"+user.getId())).body(user);
+
     }
 
     @GetMapping("/{id}")
     public UserResponse getUser(@PathVariable Integer id){
+
         return userService.getUserById(id);
     }
 
