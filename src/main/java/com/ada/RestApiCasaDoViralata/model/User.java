@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 @Entity
 @AllArgsConstructor
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table (name = "users")
+@Where(clause = "active is true")
 public class User {
 
     @Id

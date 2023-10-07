@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public UserResponse getUserByUserName(String userName) {
-        return UserConvert.toResponse((userRepository.findByUserNameAndActive(userName, true)).get());
+        return UserConvert.toResponse((userRepository.findByUserName(userName)).get());
     }
 
     public UserResponse updateUser (Integer id, UserRequest userRequest){
