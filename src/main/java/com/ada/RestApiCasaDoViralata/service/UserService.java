@@ -17,7 +17,10 @@ public class UserService {
     UserRepository userRepository;
 
     public UserResponse saveUSer(UserRequest userDTO){
-        User userEntity = userRepository.save(UserConvert.toEntity(userDTO));
+        User user = UserConvert.toEntity(userDTO);
+        user.setActive(true);
+        User userEntity = userRepository.save(user);
+
         return UserConvert.toResponse(userEntity);
 
     }
@@ -33,7 +36,7 @@ public class UserService {
     }
 
     public UserResponse getUserByUserName(String userName) {
-        return UserConvert.toResponse((userRepository.findByUserName(userName)));
+        return UserConvert.toResponse((userRepository.findByUserNameAndActive(userName, true)).get());
     }
 
     public UserResponse updateUser (Integer id, UserRequest userRequest){
@@ -44,6 +47,8 @@ public class UserService {
     }
 
     public void deleteUser(Integer id){
-       userRepository.deleteById(id);
+       User user = userRepository.findById(id).get();
+       user.setActive(false);
+       userRepository.save(user);
     }
 }

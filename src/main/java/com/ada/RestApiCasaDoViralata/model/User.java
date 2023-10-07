@@ -24,5 +24,7 @@ public class User {
     @Column (name = "password", nullable = false)
     private Integer password;
 
+    private boolean active;
+
 
 }
