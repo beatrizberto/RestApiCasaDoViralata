@@ -4,6 +4,7 @@ import com.ada.RestApiCasaDoViralata.model.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,11 +12,12 @@ import java.util.Date;
 @Service
 public class TokenService {
 
-   // private String secretKey;
+    @Value("${config.token.secret}")
+    private String secretKey;
 
     public String tokenGenerate(User user) {
         try {
-            Algorithm algorithm = Algorithm.HMAC512("1234");
+            Algorithm algorithm = Algorithm.HMAC512(secretKey);
 
             return JWT.create()
                     .withSubject(user.getEmail())
@@ -25,7 +27,7 @@ public class TokenService {
                     .withIssuer("Ada Tech")
                     .sign(algorithm);
 
-        } catch (JWTCreationException exception){
+        } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar token", exception);
         }
 
