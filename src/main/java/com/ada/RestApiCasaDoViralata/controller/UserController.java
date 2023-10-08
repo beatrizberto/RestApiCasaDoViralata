@@ -3,6 +3,7 @@ package com.ada.RestApiCasaDoViralata.controller;
 import com.ada.RestApiCasaDoViralata.controller.dto.UserRequest;
 import com.ada.RestApiCasaDoViralata.controller.dto.UserResponse;
 import com.ada.RestApiCasaDoViralata.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,8 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<UserResponse> saveUser(@RequestBody UserRequest userDTO) {
+    public ResponseEntity<UserResponse> saveUser(
+           @Valid @RequestBody UserRequest userDTO) {
 
         UserResponse user = userService.saveUSer(userDTO);
         return ResponseEntity.created(URI.create("/user/" + user.getId())).body(user);

@@ -32,6 +32,7 @@ public class UserService {
     }
 
     public UserResponse getUserById(Integer id) {
+
         return UserConvert.toResponse(userRepository.findById(id).get());
     }
 
