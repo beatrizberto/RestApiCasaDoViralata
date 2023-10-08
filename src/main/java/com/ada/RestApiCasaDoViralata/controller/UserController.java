@@ -41,10 +41,16 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @GetMapping("/username/{userName}")
-    public ResponseEntity<UserResponse> getUserByUserName(@PathVariable String userName) {
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserResponse> getUserByName(@PathVariable String name) {
 
-        return ResponseEntity.ok(userService.getUserByUserName(userName));
+        return ResponseEntity.ok(userService.getUserByName(name));
+    }
+
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable String email){
+        return  ResponseEntity.ok(userService.getUserByEmail(email));
     }
 
     //update

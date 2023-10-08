@@ -11,7 +11,7 @@ public class UserConvert {
 
     public static User toEntity(UserRequest userDTO) {
         User user = new User();
-        user.setUserName(userDTO.getUserName());
+        user.setName(userDTO.getName());
         user.setPassword(userDTO.getPassword());
 
         return user;
@@ -20,7 +20,7 @@ public class UserConvert {
     public static UserResponse toResponse(User user) {
         UserResponse userResponse = new UserResponse();
         userResponse.setId(user.getId());
-        userResponse.setUserName(user.getUserName());
+        userResponse.setName(user.getName());
 
         return userResponse;
     }

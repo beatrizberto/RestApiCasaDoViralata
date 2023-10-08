@@ -36,9 +36,16 @@ public class UserService {
         return UserConvert.toResponse(userRepository.findById(id).get());
     }
 
-    public UserResponse getUserByUserName(String userName) {
-        return UserConvert.toResponse((userRepository.findByUserName(userName)).get());
+    public UserResponse getUserByEmail(String email) {
+return UserConvert.toResponse(userRepository.findByEmail(email));
+
     }
+
+
+    public UserResponse getUserByName(String userName) {
+        return UserConvert.toResponse((userRepository.findByName(userName)).get());
+
+            }
 
     public UserResponse updateUser (Integer id, UserRequest userRequest){
         User user = UserConvert.toEntity(userRequest);
@@ -52,4 +59,6 @@ public class UserService {
        user.setActive(false);
        userRepository.save(user);
     }
+
+
 }
