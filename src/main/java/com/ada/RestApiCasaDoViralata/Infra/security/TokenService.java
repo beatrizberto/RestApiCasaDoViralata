@@ -2,8 +2,10 @@ package com.ada.RestApiCasaDoViralata.Infra.security;
 
 import com.ada.RestApiCasaDoViralata.model.User;
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,19 @@ public class TokenService {
         }
 
 
+    }
+
+    public String getSubject(String token){
+        try{
+            Algorithm algorithm= Algorithm.HMAC512(secretKey);
+
+            JWTVerifier verifier = JWT.require(algorithm)
+                    .withIssuer("Ada Tech")
+                    .build();
+
+            return verifier.verify(token).getSubject();
+        } catch (JWTVerificationException exception){
+            throw new RuntimeException("Invalid token");
+        }
     }
 }
