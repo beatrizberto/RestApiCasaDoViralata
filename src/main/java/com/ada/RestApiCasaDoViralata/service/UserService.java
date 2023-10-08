@@ -6,6 +6,7 @@ import com.ada.RestApiCasaDoViralata.model.User;
 import com.ada.RestApiCasaDoViralata.repository.UserRepository;
 import com.ada.RestApiCasaDoViralata.utils.UserConvert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +17,15 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public UserResponse saveUSer(UserRequest userDTO){
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    public UserResponse saveUser(UserRequest userDTO){
         User user = UserConvert.toEntity(userDTO);
+
+        String encodePassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodePassword);
+
         user.setActive(true);
         User userEntity = userRepository.save(user);
 
@@ -36,10 +44,10 @@ public class UserService {
         return UserConvert.toResponse(userRepository.findById(id).get());
     }
 
-    public UserResponse getUserByEmail(String email) {
-return UserConvert.toResponse(userRepository.findByEmail(email));
-
-    }
+//    public UserResponse getUserByEmail(String email) {
+//    return UserConvert.toResponse(userRepository.findByEmail(email));
+//
+//    }
 
 
     public UserResponse getUserByName(String userName) {

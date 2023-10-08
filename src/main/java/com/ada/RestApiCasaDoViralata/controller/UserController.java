@@ -27,9 +27,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserResponse> saveUser(
-           @Valid @RequestBody UserRequest userDTO) {
+         @Valid  @RequestBody UserRequest userDTO) {
 
-        UserResponse user = userService.saveUSer(userDTO);
+        UserResponse user = userService.saveUser(userDTO);
         return ResponseEntity.created(URI.create("/user/" + user.getId())).body(user);
 
     }
@@ -48,10 +48,10 @@ public class UserController {
     }
 
 
-    @GetMapping("/email/{email}")
-    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable String email){
-        return  ResponseEntity.ok(userService.getUserByEmail(email));
-    }
+//    @GetMapping("/email/{email}")
+//    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable String email){
+//        return  ResponseEntity.ok(userService.getUserByEmail(email));
+//    }
 
     //update
     @PutMapping("/{id}")
