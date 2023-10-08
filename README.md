@@ -31,7 +31,7 @@ Para este projeto, foram criadas as seguintes estruturas de dados:
 ## Aplicação
 - Gerada com Spring Boot
 - Banco de dados mockado H2
-- Autenticação via Spring Security
+- Autenticação via Spring Security com Token JWT
 
 ### User
 - Usuário responsável por inserir os dados. A princípio, um nível de acesso é o suficiente, mas a API será criada de modo a permitir a inclusão de outros perfis conforme o projeto se expanda.
@@ -42,6 +42,7 @@ Para este projeto, foram criadas as seguintes estruturas de dados:
 
 ### Dog
 - Atributos: id, name, color, sex, age, size, admissionDate;
+- A exibição de todos os cães esté configurada com Pageable
 
 ## Implementações futuras
 - Adicionar model Cat para cadastro de gatos, com atributos específicos
