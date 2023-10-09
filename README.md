@@ -26,7 +26,7 @@ O abrigo sobrevive por meio de planos de assinatura mensal por plataformas do ti
 
 ## Estrutura da aplicação
 
-Para este projeto, foram criadas as seguintes estruturas de dados:
+Para este projeto, foram criadas as seguintes funcionalidades:
 
 ## Aplicação
 - Gerada com Spring Boot
